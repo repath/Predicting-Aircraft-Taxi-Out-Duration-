@@ -1,0 +1,66 @@
+﻿Taxi-In-Out_Prediction
+├── .venv
+├── __pycache__
+├── dashboard
+│   ├── app.js | 12.28 KB | 2026-10-05 19:36:33
+│   ├── evaluation_data.json | 225.12 KB | 2026-10-06 13:28:00
+│   ├── index.html | 10.78 KB | 2026-10-05 19:36:20
+│   └── style.css | 9.16 KB | 2026-10-05 19:36:06
+├── data
+│   ├── processed
+│   │   ├── cleaned_flights.csv | 3.66 MB | 2026-10-06 23:14:13
+│   │   ├── cleaning_audit_summary.json | 1.09 KB | 2026-10-05 19:31:21
+│   │   ├── test_features.csv | 1.95 MB | 2026-10-05 19:32:56
+│   │   └── train_features.csv | 9.75 MB | 2026-10-05 19:32:56
+│   └── raw
+│       └── bts_carrier_ontime_sample.csv | 3.77 MB | 2026-10-06 13:02:57
+├── docs
+│   ├── architecture.md | 4.46 KB | 2026-10-15 12:08:09
+│   ├── data_dictionary.md | 5.13 KB | 2026-10-15 12:09:53
+│   └── user_guide.md | 3.48 KB | 2026-10-15 12:18:25
+├── figures
+│   ├── eda_congestion_vs_taxi.png | 258.19 KB | 2026-10-15 12:05:11
+│   ├── eda_taxi_distribution.png | 168.15 KB | 2026-10-15 12:05:10
+│   ├── feature_importance.png | 140.77 KB | 2026-10-15 12:05:19
+│   ├── model_comparison.png | 198.01 KB | 2026-10-15 12:05:13
+│   ├── residuals_and_actual_vs_predicted.png | 328.05 KB | 2026-10-15 12:05:18
+│   └── taxi_out_process_diagram.jpg | 881.62 KB | 2026-10-15 23:30:20
+├── models
+│   ├── linear_regression_baseline.joblib | 4.14 KB | 2026-10-06 13:28:00
+│   ├── model_evaluation_metrics.json | 12.27 KB | 2026-10-06 13:28:00
+│   ├── random_forest_regressor.joblib | 28.78 MB | 2026-10-06 13:28:00
+│   ├── target_encoders.json | 538 B | 2026-10-05 19:32:56
+│   └── xgboost_regressor.joblib | 450.60 KB | 2026-10-06 13:28:00
+├── notebooks
+│   └── Taxi_Out_Prediction_Pipeline.ipynb | 306.78 KB | 2026-10-15 12:20:23
+├── output
+│   └── pdf
+│       ├── 2606MGAIL130.doc | 30.50 KB | 2026-10-09 18:52:07
+│       ├── 2606MGAIL130.docx | 28.95 KB | 2026-10-15 17:17:49
+│       ├── 2606MGAIL130.pdf | 249.55 KB | 2026-10-15 17:18:07
+│       └── 2606MGAIL130_Abstract.md | 4.67 KB | 2026-10-15 12:26:05
+├── presentation
+├── scripts
+│   ├── convert_to_pdf.ps1 | 623 B | 2026-10-15 12:25:08
+│   ├── generate_presentation.py | 26.99 KB | 2026-10-15 23:32:41
+│   └── generate_submission_doc.py | 11.25 KB | 2026-10-15 12:21:36
+├── src
+│   ├── data_preprocessing.py | 5.84 KB | 2026-10-05 19:31:10
+│   ├── evaluate.py | 9.30 KB | 2026-10-15 12:05:37
+│   ├── feature_engineering.py | 6.72 KB | 2026-10-05 19:32:43
+│   ├── generate_sample_data.py | 9.28 KB | 2026-10-05 19:30:31
+│   └── train_models.py | 11.44 KB | 2026-10-06 13:27:47
+├── tmp
+│   └── pdfs
+├── .gitignore | 0 B | 2026-10-19 11:34:00
+├── aircraft_Taxi_out.pptx | 1.28 MB | 2026-10-16 20:28:00
+├── filetree.ps1 | 1.89 KB | 2026-10-19 11:45:12
+├── filetree_out.txt | 3.61 KB | 2026-10-19 11:45:18
+├── generate_notebook.py | 22.29 KB | 2026-10-15 12:19:29
+├── IMPROVEMENTS.md | 26.35 KB | 2026-10-15 11:18:16
+├── PARAMETERS.md | 12.37 KB | 2026-10-06 14:59:35
+├── predict.py | 6.55 KB | 2026-10-06 14:20:00
+├── Project_Report.md | 16.74 KB | 2026-10-15 12:42:58
+├── README.md | 3.13 KB | 2026-10-15 12:02:55
+├── requirements.txt | 4.63 KB | 2026-10-19 11:32:26
+└── streamlit_app.py | 66.91 KB | 2026-10-16 17:58:02

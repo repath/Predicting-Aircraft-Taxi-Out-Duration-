@@ -1,0 +1,47 @@
+{
+  "raw_record_count": 75000,
+  "initial_columns": [
+    "FL_DATE",
+    "OP_UNIQUE_CARRIER",
+    "ORIGIN",
+    "DEST",
+    "CRS_DEP_TIME",
+    "DEP_TIME",
+    "DEP_DELAY",
+    "TAXI_OUT",
+    "WHEELS_OFF",
+    "DISTANCE",
+    "CANCELLED",
+    "DIVERTED"
+  ],
+  "cancelled_flights_removed": 1507,
+  "diverted_flights_removed": 194,
+  "invalid_or_missing_taxi_out_removed": 438,
+  "percentile_inspection_before_outlier_treatment": {
+    "p50": 23.4,
+    "p75": 26.3,
+    "p90": 29.5,
+    "p95": 32.1,
+    "p99": 114.1,
+    "p99.5": 141.13999999999942,
+    "p99.9": 167.9,
+    "min": 11.7,
+    "max": 174.8,
+    "mean": 25.558674736827655,
+    "std": 14.828087025359352,
+    "count_above_90": 1476,
+    "count_above_120": 589
+  },
+  "outlier_strategy": "filter",
+  "outlier_threshold": 120.0,
+  "outliers_removed": 589,
+  "final_cleaned_count": 72272,
+  "retention_rate_pct": 96.36,
+  "post_clean_stats": {
+    "mean_taxi_out": 24.565562043391633,
+    "std_taxi_out": 9.884896789182847,
+    "min_taxi_out": 11.7,
+    "max_taxi_out": 119.0,
+    "median_taxi_out": 23.4
+  }
+}

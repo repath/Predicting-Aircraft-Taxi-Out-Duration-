@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aviation Taxi-Out Analytics & Prediction Platform | DFW Hub</title>
+  <meta name="description" content="Operational Taxi-Out Duration Prediction and Surface Congestion Analytics for BTS Carrier On-Time Performance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Chart.js for smooth interactive high-performance charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="dashboard-container">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+          </svg>
+        </div>
+        <div class="brand-title">
+          <h1>TAXI-OUT DISPATCH AI</h1>
+          <p>Airport Surface Trajectory & Congestion Predictive Analytics | DFW & National Airspace System</p>
+        </div>
+      </div>
+      <div class="header-status">
+        <span class="badge-live">
+          <span class="pulse-dot"></span>
+          Operational Models Active (RF & LR)
+        </span>
+      </div>
+    </header>
+
+    <!-- Key Metrics Cards -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Random Forest MAE</div>
+        <div class="kpi-value-row">
+          <div class="kpi-value" id="kpi-rf-mae">4.04</div>
+          <div class="kpi-unit">min</div>
+        </div>
+        <div class="kpi-subtext">▼ 0.13 min better than Baseline LR</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Operational Accuracy (±5 min)</div>
+        <div class="kpi-value-row">
+          <div class="kpi-value" id="kpi-rf-p5">82.6</div>
+          <div class="kpi-unit">%</div>
+        </div>
+        <div class="kpi-subtext">82.6% within FAA pushback tolerance</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Average Taxi-Out Time</div>
+        <div class="kpi-value-row">
+          <div class="kpi-value">24.6</div>
+          <div class="kpi-unit">min</div>
+        </div>
+        <div class="kpi-subtext">DFW Hub baseline: 17.5–28.5 min</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Validation Set Sample</div>
+        <div class="kpi-value-row">
+          <div class="kpi-value">12,001</div>
+          <div class="kpi-unit">flights</div>
+        </div>
+        <div class="kpi-subtext">Nov–Dec 2025 Out-of-Time Test Set</div>
+      </div>
+    </section>
+
+    <!-- Main Grid: Simulator + Visual Analytics -->
+    <div class="main-grid">
+      
+      <!-- Left: Interactive Dispatch Simulator -->
+      <section class="glass-panel" id="simulator-section">
+        <h2 class="panel-title">
+          <span>Flight Dispatch Simulator</span>
+        </h2>
+        <p class="panel-subtitle">Predict taxi-out minutes in real-time prior to gate departure.</p>
+
+        <form id="sim-form">
+          <div class="form-group">
+            <label for="sim-carrier">Operating Carrier</label>
+            <select id="sim-carrier" class="form-control">
+              <option value="AA" selected>American Airlines (AA) - DFW Hub</option>
+              <option value="DL">Delta Air Lines (DL)</option>
+              <option value="UA">United Airlines (UA)</option>
+              <option value="WN">Southwest Airlines (WN)</option>
+              <option value="B6">JetBlue (B6)</option>
+              <option value="NK">Spirit Airlines (NK)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sim-origin">Origin Airport</label>
+            <select id="sim-origin" class="form-control">
+              <option value="DFW" selected>DFW - Dallas/Fort Worth Intl</option>
+              <option value="ORD">ORD - Chicago O'Hare</option>
+              <option value="ATL">ATL - Hartsfield-Jackson Atlanta</option>
+              <option value="DEN">DEN - Denver International</option>
+              <option value="LAX">LAX - Los Angeles International</option>
+              <option value="JFK">JFK - New York John F. Kennedy</option>
+              <option value="CLT">CLT - Charlotte Douglas</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sim-dest">Destination Airport</label>
+            <select id="sim-dest" class="form-control">
+              <option value="ORD" selected>ORD - Chicago</option>
+              <option value="MIA">MIA - Miami</option>
+              <option value="LAX">LAX - Los Angeles</option>
+              <option value="LGA">LGA - New York LaGuardia</option>
+              <option value="ATL">ATL - Atlanta</option>
+              <option value="DEN">DEN - Denver</option>
+              <option value="SFO">SFO - San Francisco</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sim-time">Scheduled Departure Time</label>
+            <input type="time" id="sim-time" class="form-control" value="08:30">
+          </div>
+
+          <div class="form-group">
+            <label for="sim-delay">Gate Departure Delay (Minutes)</label>
+            <div class="range-slider-wrap">
+              <input type="range" id="sim-delay" min="-15" max="90" value="5" step="1">
+              <span id="delay-val" class="slider-val">+5m</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="sim-congestion">Preceding 1h Departures (Congestion)</label>
+            <div class="range-slider-wrap">
+              <input type="range" id="sim-congestion" min="1" max="25" value="16" step="1">
+              <span id="congestion-val" class="slider-val">16 fl</span>
+            </div>
+          </div>
+        </form>
+
+        <div class="prediction-result-box">
+          <div class="pred-result-label">Predicted Taxi-Out Duration</div>
+          <div class="pred-result-val" id="sim-pred-out">26.2 <span style="font-size: 1.2rem; font-weight: 500;">min</span></div>
+          <div class="pred-meta-row">
+            <div class="pred-meta-item">
+              <div class="meta-label">Est. Pushback</div>
+              <div class="meta-val" id="sim-est-dep">08:35</div>
+            </div>
+            <div class="pred-meta-item">
+              <div class="meta-label">Est. Wheels-Off</div>
+              <div class="meta-val" id="sim-est-wo">09:01</div>
+            </div>
+            <div class="pred-meta-item">
+              <div class="meta-label">Model Pipeline</div>
+              <div class="meta-val" style="color: var(--accent-cyan);">Random Forest</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Right: Interactive Visual Analytics Tabs -->
+      <section class="glass-panel">
+        <div class="tabs-header">
+          <button class="tab-btn active" data-tab="tab-scatter">Actual vs. Predicted</button>
+          <button class="tab-btn" data-tab="tab-congestion">Congestion Impact</button>
+          <button class="tab-btn" data-tab="tab-models">Model Comparison</button>
+          <button class="tab-btn" data-tab="tab-features">Feature Importance</button>
+        </div>
+
+        <!-- Tab 1: Actual vs Predicted Scatter -->
+        <div class="tab-content active" id="tab-scatter">
+          <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; color: var(--text-muted);">
+            Test Flights Parity Scatter Plot (Actual Taxi-Out vs Random Forest Predictions)
+          </h3>
+          <div class="chart-box">
+            <canvas id="scatterChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Tab 2: Congestion Impact -->
+        <div class="tab-content" id="tab-congestion">
+          <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; color: var(--text-muted);">
+            Surface Queueing Dynamics: Departure Surge vs Taxi-Out Duration
+          </h3>
+          <div class="chart-box">
+            <canvas id="congestionChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Tab 3: Model Comparison -->
+        <div class="tab-content" id="tab-models">
+          <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; color: var(--text-muted);">
+            Baseline Linear Regression vs. Random Forest Regressor Evaluation
+          </h3>
+          <div class="chart-box">
+            <canvas id="modelBarChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Tab 4: Feature Importance -->
+        <div class="tab-content" id="tab-features">
+          <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; color: var(--text-muted);">
+            Top Operational Predictors Influencing Taxi-Out Duration
+          </h3>
+          <div class="chart-box">
+            <canvas id="featureChart"></canvas>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- Bottom Section: Test Flight Inspection Feed -->
+    <section class="glass-panel table-panel">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <div>
+          <h2 class="panel-title">Out-of-Time Test Flight Feed (Nov–Dec 2025)</h2>
+          <p class="panel-subtitle" style="margin-bottom: 0;">Evaluation records comparing ground truth against model inference.</p>
+        </div>
+        <div>
+          <input type="text" id="flightSearch" placeholder="Search airline or airport..." class="form-control" style="width: 260px; padding: 6px 12px;">
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="flight-table" id="flightsTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Carrier</th>
+              <th>Origin</th>
+              <th>Dest</th>
+              <th>Scheduled</th>
+              <th>Actual Dep</th>
+              <th>Congestion (1h)</th>
+              <th>Actual Taxi</th>
+              <th>RF Prediction</th>
+              <th>Error</th>
+              <th>Accuracy Grade</th>
+            </tr>
+          </thead>
+          <tbody id="flight-table-body">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      <p>JNTU Coursework Project — Marketing Carrier On-Time Performance ML Architecture</p>
+      <p style="margin-top: 4px;">Trained on Months 1–10 (60,271 records) | Tested on Months 11–12 (12,001 records) | Zero Target Leakage</p>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

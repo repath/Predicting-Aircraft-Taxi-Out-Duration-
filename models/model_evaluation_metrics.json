@@ -1,0 +1,587 @@
+{
+  "models": {
+    "Linear_Regression_Baseline": {
+      "train": {
+        "MAE_minutes": 4.108,
+        "RMSE_minutes": 9.732,
+        "R2_Score": 0.0209,
+        "Pct_Within_3_Min": 54.23,
+        "Pct_Within_5_Min": 78.5,
+        "Mean_Residual_Bias": 0.0,
+        "Std_Residual": 9.732
+      },
+      "test": {
+        "MAE_minutes": 4.17,
+        "RMSE_minutes": 10.037,
+        "R2_Score": 0.0166,
+        "Pct_Within_3_Min": 54.6,
+        "Pct_Within_5_Min": 78.91,
+        "Mean_Residual_Bias": 0.374,
+        "Std_Residual": 10.03
+      },
+      "top_coefficients": [
+        {
+          "feature": "ORIGIN_DFW",
+          "coefficient": -1.6618
+        },
+        {
+          "feature": "ORIGIN_TAXI_MEAN",
+          "coefficient": 0.8784
+        },
+        {
+          "feature": "CONGESTION_1H",
+          "coefficient": 0.8317
+        },
+        {
+          "feature": "ORIGIN_JFK",
+          "coefficient": 0.5976
+        },
+        {
+          "feature": "CARRIER_TAXI_MEAN",
+          "coefficient": 0.5221
+        },
+        {
+          "feature": "DISTANCE",
+          "coefficient": 0.4284
+        },
+        {
+          "feature": "ORIGIN_ATL",
+          "coefficient": 0.3668
+        },
+        {
+          "feature": "SIN_HOUR",
+          "coefficient": -0.3652
+        },
+        {
+          "feature": "COS_HOUR",
+          "coefficient": 0.3009
+        },
+        {
+          "feature": "ORIGIN_CLT",
+          "coefficient": 0.2963
+        }
+      ]
+    },
+    "Random_Forest_Regressor": {
+      "train": {
+        "MAE_minutes": 3.375,
+        "RMSE_minutes": 7.938,
+        "R2_Score": 0.3487,
+        "Pct_Within_3_Min": 63.73,
+        "Pct_Within_5_Min": 88.25,
+        "Mean_Residual_Bias": -0.057,
+        "Std_Residual": 7.938
+      },
+      "test": {
+        "MAE_minutes": 4.04,
+        "RMSE_minutes": 9.999,
+        "R2_Score": 0.0239,
+        "Pct_Within_3_Min": 57.48,
+        "Pct_Within_5_Min": 82.6,
+        "Mean_Residual_Bias": 0.199,
+        "Std_Residual": 9.997
+      },
+      "hyperparameters": {
+        "n_estimators": 100,
+        "max_depth": 15,
+        "min_samples_split": 10,
+        "random_state": 42
+      },
+      "top_importances": [
+        {
+          "feature": "DISTANCE",
+          "importance": 0.3003
+        },
+        {
+          "feature": "DEP_DELAY",
+          "importance": 0.1827
+        },
+        {
+          "feature": "SIN_HOUR",
+          "importance": 0.0881
+        },
+        {
+          "feature": "CONGESTION_1H",
+          "importance": 0.0673
+        },
+        {
+          "feature": "COS_HOUR",
+          "importance": 0.0642
+        },
+        {
+          "feature": "CONGESTION_30M",
+          "importance": 0.0523
+        },
+        {
+          "feature": "ORIGIN_TAXI_MEAN",
+          "importance": 0.0336
+        },
+        {
+          "feature": "CARRIER_TAXI_MEAN",
+          "importance": 0.0238
+        },
+        {
+          "feature": "DAY_OF_WEEK_2",
+          "importance": 0.0199
+        },
+        {
+          "feature": "DAY_OF_WEEK_4",
+          "importance": 0.0197
+        }
+      ]
+    },
+    "XGBoost_Regressor": {
+      "train": {
+        "MAE_minutes": 3.66,
+        "RMSE_minutes": 9.063,
+        "R2_Score": 0.1509,
+        "Pct_Within_3_Min": 59.08,
+        "Pct_Within_5_Min": 86.44,
+        "Mean_Residual_Bias": 0.003,
+        "Std_Residual": 9.063
+      },
+      "test": {
+        "MAE_minutes": 3.879,
+        "RMSE_minutes": 9.89,
+        "R2_Score": 0.0452,
+        "Pct_Within_3_Min": 58.8,
+        "Pct_Within_5_Min": 84.88,
+        "Mean_Residual_Bias": 0.33,
+        "Std_Residual": 9.884
+      },
+      "hyperparameters": {
+        "n_estimators": 100,
+        "max_depth": 6,
+        "learning_rate": 0.1,
+        "random_state": 42
+      },
+      "top_importances": [
+        {
+          "feature": "SIN_HOUR",
+          "importance": 0.1398
+        },
+        {
+          "feature": "COS_HOUR",
+          "importance": 0.0862
+        },
+        {
+          "feature": "ORIGIN_TAXI_MEAN",
+          "importance": 0.0711
+        },
+        {
+          "feature": "CARRIER_TAXI_MEAN",
+          "importance": 0.0613
+        },
+        {
+          "feature": "DAY_OF_WEEK_6",
+          "importance": 0.0539
+        },
+        {
+          "feature": "OP_UNIQUE_CARRIER_NK",
+          "importance": 0.0448
+        },
+        {
+          "feature": "OP_UNIQUE_CARRIER_UA",
+          "importance": 0.0405
+        },
+        {
+          "feature": "DISTANCE",
+          "importance": 0.036
+        },
+        {
+          "feature": "ORIGIN_CLT",
+          "importance": 0.0352
+        },
+        {
+          "feature": "ORIGIN_LAX",
+          "importance": 0.0347
+        }
+      ]
+    }
+  },
+  "all_feature_names": [
+    "DEP_DELAY",
+    "DISTANCE",
+    "CONGESTION_1H",
+    "CONGESTION_30M",
+    "SIN_HOUR",
+    "COS_HOUR",
+    "ORIGIN_TAXI_MEAN",
+    "CARRIER_TAXI_MEAN",
+    "OP_UNIQUE_CARRIER_AA",
+    "OP_UNIQUE_CARRIER_AS",
+    "OP_UNIQUE_CARRIER_B6",
+    "OP_UNIQUE_CARRIER_DL",
+    "OP_UNIQUE_CARRIER_NK",
+    "OP_UNIQUE_CARRIER_UA",
+    "OP_UNIQUE_CARRIER_WN",
+    "ORIGIN_ATL",
+    "ORIGIN_CLT",
+    "ORIGIN_DEN",
+    "ORIGIN_DFW",
+    "ORIGIN_JFK",
+    "ORIGIN_LAX",
+    "ORIGIN_ORD",
+    "DAY_OF_WEEK_0",
+    "DAY_OF_WEEK_1",
+    "DAY_OF_WEEK_2",
+    "DAY_OF_WEEK_3",
+    "DAY_OF_WEEK_4",
+    "DAY_OF_WEEK_5",
+    "DAY_OF_WEEK_6"
+  ],
+  "feature_importances_rf": [
+    {
+      "feature": "DISTANCE",
+      "importance": 0.3003
+    },
+    {
+      "feature": "DEP_DELAY",
+      "importance": 0.1827
+    },
+    {
+      "feature": "SIN_HOUR",
+      "importance": 0.0881
+    },
+    {
+      "feature": "CONGESTION_1H",
+      "importance": 0.0673
+    },
+    {
+      "feature": "COS_HOUR",
+      "importance": 0.0642
+    },
+    {
+      "feature": "CONGESTION_30M",
+      "importance": 0.0523
+    },
+    {
+      "feature": "ORIGIN_TAXI_MEAN",
+      "importance": 0.0336
+    },
+    {
+      "feature": "CARRIER_TAXI_MEAN",
+      "importance": 0.0238
+    },
+    {
+      "feature": "DAY_OF_WEEK_2",
+      "importance": 0.0199
+    },
+    {
+      "feature": "DAY_OF_WEEK_4",
+      "importance": 0.0197
+    },
+    {
+      "feature": "DAY_OF_WEEK_6",
+      "importance": 0.0182
+    },
+    {
+      "feature": "DAY_OF_WEEK_5",
+      "importance": 0.0175
+    },
+    {
+      "feature": "DAY_OF_WEEK_0",
+      "importance": 0.016
+    },
+    {
+      "feature": "DAY_OF_WEEK_3",
+      "importance": 0.0157
+    },
+    {
+      "feature": "DAY_OF_WEEK_1",
+      "importance": 0.0155
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_AA",
+      "importance": 0.0069
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_NK",
+      "importance": 0.0063
+    },
+    {
+      "feature": "ORIGIN_LAX",
+      "importance": 0.0059
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_UA",
+      "importance": 0.0057
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_B6",
+      "importance": 0.0052
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_DL",
+      "importance": 0.005
+    },
+    {
+      "feature": "ORIGIN_JFK",
+      "importance": 0.0048
+    },
+    {
+      "feature": "ORIGIN_CLT",
+      "importance": 0.0046
+    },
+    {
+      "feature": "ORIGIN_ATL",
+      "importance": 0.0045
+    },
+    {
+      "feature": "ORIGIN_DEN",
+      "importance": 0.0042
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_WN",
+      "importance": 0.0038
+    },
+    {
+      "feature": "ORIGIN_ORD",
+      "importance": 0.0037
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_AS",
+      "importance": 0.0025
+    },
+    {
+      "feature": "ORIGIN_DFW",
+      "importance": 0.0019
+    }
+  ],
+  "feature_importances_xgb": [
+    {
+      "feature": "SIN_HOUR",
+      "importance": 0.1398
+    },
+    {
+      "feature": "COS_HOUR",
+      "importance": 0.0862
+    },
+    {
+      "feature": "ORIGIN_TAXI_MEAN",
+      "importance": 0.0711
+    },
+    {
+      "feature": "CARRIER_TAXI_MEAN",
+      "importance": 0.0613
+    },
+    {
+      "feature": "DAY_OF_WEEK_6",
+      "importance": 0.0539
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_NK",
+      "importance": 0.0448
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_UA",
+      "importance": 0.0405
+    },
+    {
+      "feature": "DISTANCE",
+      "importance": 0.036
+    },
+    {
+      "feature": "ORIGIN_CLT",
+      "importance": 0.0352
+    },
+    {
+      "feature": "ORIGIN_LAX",
+      "importance": 0.0347
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_B6",
+      "importance": 0.0344
+    },
+    {
+      "feature": "DAY_OF_WEEK_5",
+      "importance": 0.0331
+    },
+    {
+      "feature": "CONGESTION_30M",
+      "importance": 0.0323
+    },
+    {
+      "feature": "CONGESTION_1H",
+      "importance": 0.0319
+    },
+    {
+      "feature": "DAY_OF_WEEK_1",
+      "importance": 0.031
+    },
+    {
+      "feature": "ORIGIN_ATL",
+      "importance": 0.0305
+    },
+    {
+      "feature": "ORIGIN_ORD",
+      "importance": 0.0301
+    },
+    {
+      "feature": "DEP_DELAY",
+      "importance": 0.0296
+    },
+    {
+      "feature": "DAY_OF_WEEK_4",
+      "importance": 0.0288
+    },
+    {
+      "feature": "DAY_OF_WEEK_2",
+      "importance": 0.0287
+    },
+    {
+      "feature": "DAY_OF_WEEK_3",
+      "importance": 0.0216
+    },
+    {
+      "feature": "DAY_OF_WEEK_0",
+      "importance": 0.0211
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_AS",
+      "importance": 0.0203
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_DL",
+      "importance": 0.013
+    },
+    {
+      "feature": "ORIGIN_DFW",
+      "importance": 0.01
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_AA",
+      "importance": 0.0
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_WN",
+      "importance": 0.0
+    },
+    {
+      "feature": "ORIGIN_DEN",
+      "importance": 0.0
+    },
+    {
+      "feature": "ORIGIN_JFK",
+      "importance": 0.0
+    }
+  ],
+  "coefficients_lr": [
+    {
+      "feature": "ORIGIN_DFW",
+      "coefficient": -1.6618
+    },
+    {
+      "feature": "ORIGIN_TAXI_MEAN",
+      "coefficient": 0.8784
+    },
+    {
+      "feature": "CONGESTION_1H",
+      "coefficient": 0.8317
+    },
+    {
+      "feature": "ORIGIN_JFK",
+      "coefficient": 0.5976
+    },
+    {
+      "feature": "CARRIER_TAXI_MEAN",
+      "coefficient": 0.5221
+    },
+    {
+      "feature": "DISTANCE",
+      "coefficient": 0.4284
+    },
+    {
+      "feature": "ORIGIN_ATL",
+      "coefficient": 0.3668
+    },
+    {
+      "feature": "SIN_HOUR",
+      "coefficient": -0.3652
+    },
+    {
+      "feature": "COS_HOUR",
+      "coefficient": 0.3009
+    },
+    {
+      "feature": "ORIGIN_CLT",
+      "coefficient": 0.2963
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_AA",
+      "coefficient": 0.2893
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_DL",
+      "coefficient": 0.2618
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_WN",
+      "coefficient": -0.1946
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_NK",
+      "coefficient": -0.1742
+    },
+    {
+      "feature": "ORIGIN_LAX",
+      "coefficient": 0.1701
+    },
+    {
+      "feature": "ORIGIN_ORD",
+      "coefficient": 0.1327
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_UA",
+      "coefficient": -0.1149
+    },
+    {
+      "feature": "ORIGIN_DEN",
+      "coefficient": 0.0983
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_B6",
+      "coefficient": -0.091
+    },
+    {
+      "feature": "DAY_OF_WEEK_1",
+      "coefficient": -0.0873
+    },
+    {
+      "feature": "CONGESTION_30M",
+      "coefficient": 0.0826
+    },
+    {
+      "feature": "DAY_OF_WEEK_6",
+      "coefficient": 0.0811
+    },
+    {
+      "feature": "DEP_DELAY",
+      "coefficient": -0.0649
+    },
+    {
+      "feature": "DAY_OF_WEEK_5",
+      "coefficient": 0.0606
+    },
+    {
+      "feature": "DAY_OF_WEEK_3",
+      "coefficient": -0.0331
+    },
+    {
+      "feature": "OP_UNIQUE_CARRIER_AS",
+      "coefficient": 0.0237
+    },
+    {
+      "feature": "DAY_OF_WEEK_4",
+      "coefficient": -0.0116
+    },
+    {
+      "feature": "DAY_OF_WEEK_2",
+      "coefficient": -0.0111
+    },
+    {
+      "feature": "DAY_OF_WEEK_0",
+      "coefficient": 0.0015
+    }
+  ]
+}
