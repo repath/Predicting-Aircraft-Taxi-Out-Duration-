@@ -1,3 +1,5 @@
+GitHub README
+>>>>>>> origin/main
 # Aviation Taxi-Out Time Prediction Pipeline
 **Coursework Project: JNTU Aviation Data Science & Operations Research**  
 **Dataset:** BTS Marketing Carrier On-Time Performance (2025 Full Year)  
@@ -73,3 +75,7 @@ Open [http://localhost:8080](http://localhost:8080) for the static HTML/Chart.js
 | **Within $\pm 5$ min** | 78.9% | 82.6% | **84.9%** |
 
 *Note: Models evaluated on held-out out-of-time test set (Months 11–12, 12,001 flights) following A-CDM operational thresholds.*
+=======
+# Predicting-Aircraft-Taxi-Out-Duration-
+JNTU Project on AIML
+>>>>>>> origin/main
